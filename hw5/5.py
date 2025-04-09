@@ -44,6 +44,4 @@ if __name__ == "__main__":
             t2.turtlesize(randrange(1, 10))
             t3.turtlesize(randrange(1, 10))
 
-
-
     done()

@@ -13,6 +13,7 @@ if __name__ == "__main__":
     t2 = Turtle('turtle'); t2.color('green'); t2.penup()
     t3 = Turtle('turtle'); t3.color('blue'); t3.penup()
     t1.goto(-100, -100); t2.goto(0,0);t3.goto(100,100)
+    t1.speed(10); t2.speed(10); t3.speed(10)
     while True:
         angle = randrange(0, 360)
         dist = randrange(1, 50)
