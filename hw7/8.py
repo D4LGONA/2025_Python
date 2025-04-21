@@ -7,4 +7,3 @@ for i in range(3):
     elif n.count(0) == 2: print('B')
     elif n.count(0) == 3: print('C')
     else: print('D')
-
