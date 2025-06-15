@@ -10,12 +10,12 @@ names = ["아이시스", "아이시스", "아쿠아제로", "레몬워터", "레
               "펩시제로", "펩시", "칠성사이다제로", "칠성사이다", "델몬트망고", "델몬트망고", "립톤아이스티", "사과에이드", "사과에이드", "포도에이드",
               "레쓰비", "가나초코", "핫식스제로", "밀키스", "핫식스", "레쓰비카페타임", "게토레이", "게토레이", "코코포도", "잔치집식혜"]
 
-load_files = ["../Images/water.jpg", "../Images/water.jpg", "../Images/aqua.jpg",  "../Images/lemonwater.jpg", "../Images/lemonwater.jpg",
-                      "../Images/oksusu.jpg", "../Images/oksusu.jpg", "../Images/bori.jpg",  "../Images/trevi.jpg", "../Images/trevi.jpg",
-                      "../Images/pz.jpg", "../Images/p.png", "../Images/chilsz.png", "../Images/chils.jpg", "../Images/mango.jpg", "../Images/mango.jpg",
-                      "../Images/lipton.jpg", "../Images/dapple.jpg", "../Images/dapple.jpg", "../Images/dgrape.jpg", "../Images/letsbe.jpg",
-                      "../Images/gna.jpg", "../Images/hzero.jpg", "../Images/milkis.jpg", "../Images/hot6.jpg", "../Images/gafetime.jpg",
-                      "../Images/geto.jpg", "../Images/geto.jpg", "../Images/koko.jpg", "../Images/eafw.png"]
+load_files = ["Images/water.jpg", "Images/water.jpg", "Images/aqua.jpg",  "Images/lemonwater.jpg", "Images/lemonwater.jpg",
+                      "Images/oksusu.jpg", "Images/oksusu.jpg", "Images/bori.jpg",  "Images/trevi.jpg", "Images/trevi.jpg",
+                      "Images/pz.jpg", "Images/p.png", "Images/chilsz.png", "Images/chils.jpg", "Images/mango.jpg", "Images/mango.jpg",
+                      "Images/lipton.jpg", "Images/dapple.jpg", "Images/dapple.jpg", "Images/dgrape.jpg", "Images/letsbe.jpg",
+                      "Images/gna.jpg", "Images/hzero.jpg", "Images/milkis.jpg", "Images/hot6.jpg", "Images/gafetime.jpg",
+                      "Images/geto.jpg", "Images/geto.jpg", "Images/koko.jpg", "Images/eafw.png"]
 
 class VendingMachineUI:
     def __init__(self, root):
@@ -29,7 +29,7 @@ class VendingMachineUI:
         self.notebook = ttk.Notebook(self.root)
         self.sales_page = SalesPage(self.notebook, self.machine)
         self.admin_page = AdminPage(self.notebook, self.machine, self.sales_page)
-        self.notebook.add(self.sales_page, text="판매 모드")
+        self.notebook.add(self.sales_page, text="소비자 모드")
         self.notebook.add(self.admin_page, text="관리자 모드")
         self.notebook.pack(expand=True, fill="both")
 
@@ -49,9 +49,9 @@ class SalesPage(tk.Frame):
         self.gap = 15
         self.num_cols = 10
         self.num_rows = 3
-        self.frames = []     # 음료 프레임 저장용
+        self.frames = []
 
-        self.init_image() # 이미지 로드
+        self.init_image()
 
         self.render_tab()
         self.update_ui()
@@ -194,9 +194,9 @@ class AdminPage(tk.Frame):
         self.gap = 15
         self.num_cols = 10
         self.num_rows = 3
-        self.frames = []  # 음료 프레임 저장용
+        self.frames = []
 
-        self.init_image()  # 이미지 로드
+        self.init_image()
 
         self.render_tab()
         print("초기화 완료")
@@ -229,25 +229,21 @@ class AdminPage(tk.Frame):
                 item_name = names[item_index]
                 item = self.Machine.items[item_name]
 
-                # 이미지
                 img_label = tk.Label(frame, image=self.images[item_index], bg="#ADD8E6")
                 img_label.place(relx=0.5, rely=0.4, anchor="center")
 
-                # 가격 입력 Entry
                 entry = tk.Entry(frame, width=6, justify="center")
                 entry.insert(0, str(item.price))
                 entry.place(relx=0.35, rely=0.55, anchor="center")
-                self.entries.append((item_name, entry))  # 이름과 함께 저장
+                self.entries.append((item_name, entry))
 
                 save_btn = tk.Button(frame, text="저장", width=2,
                                      command=lambda name=item_name, e=entry: self.save_price(name, e))
                 save_btn.place(relx=0.8, rely=0.55, anchor="center")
 
-                # "+" 버튼 (재고 증가)
                 plus_btn = tk.Button(frame, text="+", width=2, command=lambda name=item_name: self.increase_stock(name))
                 plus_btn.place(relx=0.25, rely=0.85, anchor="center")
 
-                # "-" 버튼 (재고 감소)
                 minus_btn = tk.Button(frame, text="-", width=2,
                                       command=lambda name=item_name: self.decrease_stock(name))
                 minus_btn.place(relx=0.75, rely=0.85, anchor="center")
